@@ -4,15 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Siswa_model extends CI_Model
 {
     //Fungsi tambah data siswa
-    var $tabel = 'siswa';
-    var $table = 'siswa';
-    var $column_order = ['nis', 'nama', 'tempat_lahir', 'tanggal_lahir', 'alamat'];
-    var $order = ['nis', 'nama', 'tempat_lahir', 'tanggal_lahir', 'alamat'];
+    var $tabel = 'siswa2';
+    var $table2 = 'siswa2';
+    var $column_order = ['nomor_induk_siswa', 'nama_siswa', 'tempat_lahir', 'tanggal_lahir', 'alamat'];
+    var $order = ['nomor_induk_siswa', 'nama_siswa', 'tempat_lahir', 'tanggal_lahir', 'alamat'];
 
 
     public function tambah($data)
     {
-        $this->db->insert('siswa', $data);
+        $this->db->insert($this->tabel, $data);
         return $this->db->affected_rows();
     }
 
@@ -43,10 +43,10 @@ class Siswa_model extends CI_Model
 
     private function _json()
     {
-        $this->db->from($this->table);
+        $this->db->from('siswa2');
         if (isset($_POST['search']['value'])) {
-            $this->db->or_like('nis', $_POST['search']['value']);
-            $this->db->or_like('nama', $_POST['search']['value']);
+            $this->db->or_like('nomor_induk_siswa', $_POST['search']['value']);
+            $this->db->or_like('nama_siswa', $_POST['search']['value']);
         }
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
@@ -57,7 +57,7 @@ class Siswa_model extends CI_Model
 
     public function json()
     {
-        return $this->db->get('siswa')->result();
+        return $this->db->get('siswa2')->result();
     }
 
     public function get_siswa()
@@ -77,20 +77,20 @@ class Siswa_model extends CI_Model
 
     public function count_all()
     {
-        $this->db->from($this->table);
+        $this->db->from('siswa2');
         return $this->db->count_all_results();
     }
 
     public function delete_by_id($id)
     {
-        $this->db->where('id_siswa', $id);
+        $this->db->where('nomor_induk_siswa', $id);
         $this->db->delete($this->table);
         return $this->db->affected_rows();
     }
 
     public function get_by_id($id)
     {
-        return $this->db->get_where($this->table, ['id_siswa' => $id])->row_array();
+        return $this->db->get_where('siswa2', ['nomor_induk_siswa' => $id])->row_array();
     }
 
     public function update($where, $data)
@@ -98,4 +98,6 @@ class Siswa_model extends CI_Model
         $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
     }
+
+    
 }

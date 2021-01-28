@@ -277,14 +277,15 @@ class Siswa extends CI_Controller
         foreach ($hasil as $h) {
             $baris = [];
             $baris[] = ++$no; //nomor ururt
-            $baris[] = $h->nis; // nama field yang mau ditampilkan
-            $baris[] = $h->nama; // nama field yang mau ditampilkan
+            $baris[] = $h->nomor_induk_siswa; // nama field yang mau ditampilkan
+            $baris[] = $h->nama_siswa; // nama field yang mau ditampilkan
             $baris[] = '<div class="text-center">            
             <a class="btn btn-sm btn-success" href="#" title="Print" onclick="byid(' . "'" . $h->id_siswa . "', 'print'" . ')"><i class="fas fa-print"></i></a>
             <a class="btn btn-sm btn-info" href="#" title="Edit" onclick="byid(' . "'" . $h->id_siswa . "', 'edit'" . ')"><i class="fas fa-edit"></i></a>
 			<a class="btn btn-sm btn-danger" href="#" title="Hapus" onclick="byid(' . "'" . $h->id_siswa . "', 'hapus'" . ')"><i class="fas fa-trash-alt"></i></a></div>';
             $data[] = $baris;
         }
+        
         $output = [
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Siswa_model->count_all(),
@@ -314,15 +315,18 @@ class Siswa extends CI_Controller
         }
     }
 
-    public function print_single($id)
+    public function print_single()
     {
+         is_siswa_login();
         $data = $this->Sekolah_model->get_by_id();
         $ids = $data['id_desain'];
+        $id = $this->session->userdata('nis');
         if ($ids == 1) {
             $data['sekolah'] = $this->Sekolah_model->get_by_id();
             $data['s'] = $this->Siswa_model->get_by_id($id);
             $this->load->view('print4', $data);
         } else {
+            $id = $this->session->userdata('nis');
             $data['sekolah'] = $this->Sekolah_model->get_by_id();
             $data['s'] = $this->Siswa_model->get_by_id($id);
             $this->load->view('print3', $data);

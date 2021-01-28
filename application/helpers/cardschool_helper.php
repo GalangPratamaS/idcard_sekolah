@@ -18,6 +18,6 @@ function is_logged_in()
 function is_siswa_login()
 { $ci = get_instance();
     if (!$ci->session->userdata('nis')) {
-        redirect('siswa_auth');
+        redirect('SiswaAuth');
     } 
 }

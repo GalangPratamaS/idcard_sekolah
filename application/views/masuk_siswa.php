@@ -25,6 +25,7 @@
     <div class="account-pages">
 
         <div class="container">
+            
             <div class="row align-items-center">
                 <div class="col-lg-6">
 
@@ -41,7 +42,7 @@
 
 
                             <div class="p-2">
-                                <form class="form-horizontal m-t-20" method="post" action="<?= base_url('auth/login'); ?>">
+                                <form class="form-horizontal m-t-20" method="post" action="<?= base_url('SiswaAuth/login'); ?>">
 
                                     <div class=" form-group row">
                                         <div class="col-12">

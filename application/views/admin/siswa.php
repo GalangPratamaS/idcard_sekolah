@@ -2,7 +2,7 @@
         <div class="container-fluid ">
             <div class="row ">
                 <div class="col-lg-6 m-b-30">
-                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#172f5f ;margin-top: -20px; margin-left:-5px">TAMBAH DATA SISWA</div>
+                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#1a52d7 ;margin-top: -20px; margin-left:-5px">TAMBAH DATA SISWA</div>
                     <div class="card m-b-30 position-static">
                         <div class="card-body">
                             <p class="m-b-30 m-t-10">Mohon untuk mengisi data dengan baik dan benar</p>
@@ -62,7 +62,7 @@
 
                         </div>
                     </div>
-                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#172f5f ;margin-top: -20px; margin-left:-5px">UPLOAD DATA SISWA</div>
+                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#1a52d7 ;margin-top: -20px; margin-left:-5px">UPLOAD DATA SISWA</div>
                     <div class="card m-b-30 position-static">
                         <div class="card-body">
 
@@ -105,7 +105,7 @@
                     </div> <!-- end col -->
                 </div> <!-- end col -->
                 <div class="col-lg-6">
-                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#172f5f ;margin-top: -20px; margin-left:-5px">DATA SISWA</div>
+                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#1a52d7 ;margin-top: -20px; margin-left:-5px">DATA SISWA</div>
                     <div class="card position-static m-b-30">
                         <div class="card-body">
                             <table id="table-siswa" class="table table-hover table-borderless" style="border-collapse: collapse;  border-spacing: 0; width: 100%;">
