@@ -11,9 +11,9 @@ class Sekolah_model extends CI_Model
         $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
     }
-    public function get_by_id()
+    public function get_by_id($id)
     {
-        return $this->db->get_where($this->table, ['id' => 1])->row_array();
+        return $this->db->get_where($this->table, ['id' => $id])->row_array();
     }
     public function json()
     {
@@ -24,5 +24,15 @@ class Sekolah_model extends CI_Model
     {
         $this->db->from($this->table);
         return $this->db->count_all_results();
+    }
+
+    public function count_siswa()
+    {
+       /* $this->db->select('SELECT b.id, b.sekolah as sekolah, count(a.id_jenjang) as count');
+        $this->db->from('siswa2 a, sekolah b');
+        $this->db->where('WHERE a.id_jenjang = b.id');
+        $this->db->group_by('b.sekolah');
+        $this->db->order_by('b.id DESC'); */
+        return $this->db->query('SELECT b.id, b.sekolah as sekolah, count(a.id_jenjang) as count FROM siswa2 a, sekolah b WHERE a.id_jenjang = b.id GROUP BY sekolah ORDER BY b.id DESC')->result();        
     }
 }

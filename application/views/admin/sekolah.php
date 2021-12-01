@@ -32,7 +32,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="alamat" value="<?= $sekolah['alamat']; ?>" placeholder="Jalan MT haryono No.28 Semarang" />
+                                        <input type="text" class="form-control" name="alamat" value="<?= $sekolah['alamat_sekolah']; ?>" placeholder="Jalan MT haryono No.28 Semarang" />
                                         <span id="alamat_error" class="text-danger"></span>
                                     </div>
                                 </div>

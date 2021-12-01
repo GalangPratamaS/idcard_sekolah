@@ -35,8 +35,8 @@
 <body onload='window.print()' style="font-size: 12px;margin-top:0;position:absolute;">
 	<?php foreach ($siswa as $s) : ?>
 		<div style="width: 925px; height: 267px; margin-bottom:10px; background-image: url('<?= base_url('asset/kartu/desain/') . $sekolah['desain']; ?>');">
-			<img style="border: 1px solid #ffffff;position: absolute;margin-left: 323px;margin-top: 112px;" src="<?= base_url('asset/kartu/foto/')  . $s->nama . ".png"; ?>" width="75.5px" height="94.4px">
-			<img style="position: absolute;margin-left: 65px;margin-top: 135px;" src="<?= base_url('asset/kartu/qr/test.png'); ?>" width="75.5px" height="75.5px">
+			<img style="border: 1px solid #ffffff;position: absolute;margin-left: 323px;margin-top: 112px;" src="<?= base_url('asset/kartu/foto/')  . $s->nama_siswa . ".png"; ?>" width="75.5px" height="94.4px">
+			<img style="position: absolute;margin-left: 65px;margin-top: 115px;" src="<?= base_url('asset/kartu/qr/test.png'); ?>" width="75.5px" height="75.5px">
 			<img style="position: absolute;margin-left: 20px;margin-top: 20px;" src="<?= base_url('asset/kartu/logo/') . $sekolah['logo']; ?>" width="65.5px" height="75.5px">
 			<img style="position: absolute;margin-left: 530px;margin-top: 150px;" src="<?= base_url('asset/kartu/ttd/') . $sekolah['tanda_tangan']; ?>" width="60px" height="55px">
 			<img style="position: absolute;margin-left: 530px;margin-top: 150px;" src="<?= base_url('asset/kartu/stempel/') . $sekolah['stempel']; ?>" width="60px" height="55px">
@@ -50,14 +50,14 @@
 						<td>NIS</td>
 					</tr>
 					<tr>
-						<td><?= $s->nis; ?></td>
+						<td><?= $s->nomor_induk_siswa; ?></td>
 					</tr>
 					</tr>
 					<tr>
 						<td>Nama</td>
 					</tr>
 					<tr>
-						<td><strong style="font-size: 12px;"><?= $s->nama; ?></strong></td>
+						<td><strong style="font-size: 12px;"><?= $s->nama_siswa; ?></strong></td>
 					</tr>
 					</tr>
 					<tr>

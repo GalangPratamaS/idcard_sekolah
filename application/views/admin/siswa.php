@@ -74,7 +74,6 @@
                             <div class="row align-items-center m-b-10">
                                 <div class="col">
                                     <div id="file-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"></div>
-
                                 </div>
                             </div>
                             <div class="row align-items-center">
@@ -92,7 +91,7 @@
                                                 <input name="importfile" type="file" class="custom-file-input" id="customFileLangHTML" accept=".xls,.xlsx" required>
                                                 <label class="custom-file-label" for="customFileLangHTML" data-browse="Browse"></label>
                                             </div>
-                                            <p class="text-muted ">Silahkan upload file excel yang sudah diisi
+                                            <p class="text-muted">Silahkan upload file excel yang sudah diisi
                                             </p>
                                             <div class="text-center">
                                                 <button type="submit" id="btnUploadsiswa" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-cloud-upload"></i> Upload</button>
@@ -102,7 +101,49 @@
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
                         </div>
-                    </div> <!-- end col -->
+                    </div> 
+                    
+                    <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#1a52d7 ;margin-top: -20px; margin-left:-5px">UPLOAD DATA AKUN SISWA</div>
+                    <div class="card m-b-30 position-static">
+                        <div class="card-body">
+
+                            <div class="m-t-10">
+                                <a type="button" href="<?= base_url('asset/fileimport/akun/akun_master.xlsx'); ?>" class="btn btn-success waves-effect waves-light text-light"><i class="mdi mdi-file-excel"></i> Download Template</a>
+                            </div>
+                            <p class="m-b-10">Silahkan download template berikut lalu isi data sesuai instruksi dari file tersebut!</p>
+
+                            <div class="row align-items-center m-b-10">
+                                <div class="col">
+                                    <div id="file-progress-bar-akun" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div id="uploaded_file_akun"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="m-b-30">
+
+                                        <form id="upload-form-akun" class="upload-form" method="post" enctype="multipart/form-data">
+                                            <div class="input-group-prepend custom-file">
+                                                <input name="importfileakun" type="file" class="custom-file-input" id="customFileLangHTML" accept=".xls,.xlsx" required>
+                                                <label class="custom-file-label" for="customFileLangHTML" data-browse="Browse"></label>
+                                            </div>
+                                            <p class="text-muted ">Silahkan upload file excel yang sudah diisi
+                                            </p>
+                                            <div class="text-center">
+                                                <button type="submit" id="btnUploadAkun" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-cloud-upload"></i> Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+                        </div>
+                    </div> 
+                    <!-- end col -->
                 </div> <!-- end col -->
                 <div class="col-lg-6">
                     <div class="btn font-weight shadow rounded-0 text-light position-absolute" style="background:#1a52d7 ;margin-top: -20px; margin-left:-5px">DATA SISWA</div>

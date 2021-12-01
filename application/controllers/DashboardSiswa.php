@@ -15,7 +15,7 @@ class DashboardSiswa extends CI_Controller
     public function index()
     {
         is_siswa_login();
-        $data['sekolah'] = $this->Sekolah_model->get_by_id();
+       // $data['sekolah'] = $this->Sekolah_model->get_by_id();
         $data['siswa'] = $this->Siswa_model->get_by_id($this->session->userdata('nis'));
         $data['title'] = " Dashboard";
         $this->load->view('templates/header_siswa', $data);
@@ -26,11 +26,22 @@ class DashboardSiswa extends CI_Controller
     public function edit_data()
     {
         is_siswa_login();
-        $data['sekolah'] = $this->Sekolah_model->get_by_id();
+        //$data['sekolah'] = $this->Sekolah_model->get_by_id();
         $data['siswa'] = $this->Siswa_model->get_by_id($this->session->userdata('nis'));
         $data['title'] = " Data Siswa";
         $this->load->view('templates/header_siswa', $data);
         $this->load->view('siswa/data_siswa', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer_siswa');
+    }
+
+    public function upload_stnk()
+    {
+        is_siswa_login();
+        //$data['sekolah'] = $this->Sekolah_model->get_by_id();
+        $data['siswa'] = $this->Siswa_model->get_by_id($this->session->userdata('nis'));
+        $data['title'] = " Data Siswa";
+        $this->load->view('templates/header_siswa', $data);
+        $this->load->view('siswa/data_stnk', $data);
+        $this->load->view('templates/footer_siswa');
     }
 }

@@ -7,14 +7,26 @@ class Sekolah extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+        cek_admin();
         $this->load->model('Sekolah_model');
+        $this->load->model('Siswa_model');
         $this->load->library(array('PHPExcel', 'PHPExcel/IOFactory'));
     }
 
     public function index()
     {
-        $data['sekolah'] = $this->Sekolah_model->get_by_id();
+        $data['sekolah'] = $this->Sekolah_model->get_by_id(1);
+        $data['sekolah'] = $this->Sekolah_model->count_siswa();    
+        $data['total_sekolah'] = $this->Sekolah_model->count_all();
+        $data['title'] = "Data Sekolah";
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/list_sekolah', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function view_sekolah($id)
+    {
+        $data['sekolah'] = $this->Sekolah_model->get_by_id($id);
         $data['title'] = "Data Sekolah";
         $this->load->view('templates/header', $data);
         $this->load->view('admin/sekolah', $data);
@@ -60,7 +72,7 @@ class Sekolah extends CI_Controller
             'sekolah' => htmlspecialchars($this->input->post('sekolah', true)),
             'lembaga' => htmlspecialchars($this->input->post('lembaga', true)),
             'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
-            'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+            'alamat_sekolah' => htmlspecialchars($this->input->post('alamat', true)),
             'domisili' => htmlspecialchars($this->input->post('domisili', true)),
             'kota' => htmlspecialchars($this->input->post('kota', true)),
             'kode_pos' => htmlspecialchars($this->input->post('kode_pos', true)),
@@ -98,7 +110,7 @@ class Sekolah extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-    public function stempel()
+    public function stempel($id)
     {
         $config['upload_path'] = "./asset/kartu/stempel/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -115,7 +127,7 @@ class Sekolah extends CI_Controller
             $stempel = [
                 'stempel' => $data['file_name'],
             ];
-            $this->Sekolah_model->update(['id' => 1], $stempel);
+            $this->Sekolah_model->update(['id' => $id], $stempel);
         }
         $jsons = [
             'status' => $json,
@@ -124,7 +136,7 @@ class Sekolah extends CI_Controller
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($jsons));
     }
-    public function ttd()
+    public function ttd($id)
     {
         $config['upload_path'] = "./asset/kartu/ttd/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -141,7 +153,7 @@ class Sekolah extends CI_Controller
             $ttd = [
                 'tanda_tangan' => $data['file_name'],
             ];
-            $this->Sekolah_model->update(['id' => 1], $ttd);
+            $this->Sekolah_model->update(['id' => $id], $ttd);
         }
         $jsons = [
             'status' => $json,
@@ -150,7 +162,7 @@ class Sekolah extends CI_Controller
         ];
         $this->output->set_content_type('application/json')->set_output(json_encode($jsons));
     }
-    public function logo()
+    public function logo($id)
     {
         $config['upload_path'] = "./asset/kartu/logo/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -167,7 +179,7 @@ class Sekolah extends CI_Controller
             $logo = [
                 'logo' => $data['file_name'],
             ];
-            $this->Sekolah_model->update(['id' => 1], $logo);
+            $this->Sekolah_model->update(['id' => $id], $logo);
         }
         $jsons = [
             'status' => $json,
@@ -177,7 +189,7 @@ class Sekolah extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($jsons));
     }
 
-    public function dinas()
+    public function dinas($id)
     {
         $config['upload_path'] = "./asset/kartu/dinas/";
         $config['allowed_types'] = 'gif|jpg|png';
@@ -194,7 +206,7 @@ class Sekolah extends CI_Controller
             $logo = [
                 'dinas' => $data['file_name'],
             ];
-            $this->Sekolah_model->update(['id' => 1], $logo);
+            $this->Sekolah_model->update(['id' => $id], $logo);
         }
         $jsons = [
             'status' => $json,

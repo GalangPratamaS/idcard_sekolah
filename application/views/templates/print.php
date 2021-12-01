@@ -49,14 +49,14 @@
 					<td>NIS</td>
 				</tr>
 				<tr>
-					<td><?= $s['nis']; ?></td>
+					<td><?= $s['nomor_induk_siswa']; ?></td>
 				</tr>
 				</tr>
 				<tr>
 					<td>Nama</td>
 				</tr>
 				<tr>
-					<td><strong style="font-size: 12px;"><?= $s['nama'] ?></strong></td>
+					<td><strong style="font-size: 12px;"><?= $s['nama_siswa'] ?></strong></td>
 				</tr>
 				</tr>
 				<tr>

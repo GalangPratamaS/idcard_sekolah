@@ -10,7 +10,7 @@
     <meta content="ThemeDesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="<?= base_url('asset/kartu/logo/') . $sekolah['logo']; ?>">
+    <link rel="shortcut icon" href="<?= base_url('asset/kartu/logo/alzhar.png'); ?>">
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -55,7 +55,7 @@
                     <div>
 
                         <a href="<?= base_url(); ?>" class="logo">
-                            <img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo.png" alt="" height="26">
+                            <img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo.png" alt="" height="40">
                         </a>
 
                     </div>
@@ -70,7 +70,7 @@
                                     <a href="<?= base_url('dashboard'); ?>"><i class="dripicons-home"></i> Dashboard</a>
                                 </li>
                                 <li class="has-submenu">
-                                    <a href="<?= base_url('siswa'); ?>"><i class="dripicons-graduation"></i>Data Siswa</i></a>
+                                    <a href="#" data-toggle="modal" data-target="#siswaSekolahModal"><i class="dripicons-graduation"></i>Data Siswa</i></a>
                                 </li>
                                 <li class="has-submenu">
                                     <a href="<?= base_url('sekolah'); ?>"><i class="dripicons-briefcase"></i>Data Sekolah</i></a>

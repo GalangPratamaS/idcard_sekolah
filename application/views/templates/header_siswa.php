@@ -10,7 +10,7 @@
     <meta content="ThemeDesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="<?= base_url('asset/kartu/logo/') . $sekolah['logo']; ?>">
+    <link rel="shortcut icon" href="<?= base_url('asset/kartu/logo/alzhar.png'); ?>">
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('vendor/vertical/'); ?>assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -55,14 +55,30 @@
                     <div>
 
                         <a href="<?= base_url('DashboardSiswa'); ?>" class="logo">
-                            <img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo.png" alt="" height="26">
+                            <img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo.png" alt="" height="40">
                         </a>
 
                     </div>
                     <!-- End Logo-->
 
                     <div class="menu-extras topbar-custom navbar p-0">
-                       
+                    <div id="navigation">
+                            <!-- Navigation Menu-->
+                            <ul class="navigation-menu">
+
+                                <li class="has-submenu">
+                                    <a href="<?= base_url('DashboardSiswa/edit_data'); ?>"><i class="dripicons-document-edit"></i>Update Data</a>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="<?= base_url('DashboardSiswa/upload_stnk'); ?>"><i class="dripicons-browser-upload"></i>Upload STNK</a>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="<?= base_url('Card'); ?>"><i class="dripicons-photo"></i>Lihat Kartu</i></a>
+                                </li>
+                                
+                            </ul>
+                            <!-- End navigation menu -->
+                        </div> <!-- end #navigation -->   
 
                         <!-- Search input -->
 
@@ -81,7 +97,7 @@
                             <!-- User-->
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <img src="<?= base_url('vendor/vertical/'); ?>assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+                                    <img src="<?= base_url('asset/kartu/foto/').$siswa['foto_siswa']; ?>" alt="user" class="rounded-circle">
                                     <span class="d-none d-md-inline-block ml-1"><?= $siswa['nama_siswa']; ?> <i class="mdi mdi-chevron-down"></i> </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">

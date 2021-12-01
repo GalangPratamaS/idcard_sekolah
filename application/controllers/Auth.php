@@ -5,14 +5,17 @@ class Auth extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct();              
         $this->load->model('Adminmodel');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['title'] = 'Halaman Login';
+        if($this->session->username != '') {
+            redirect('Dashboard');
+        }
+        $data['title'] = 'Halaman Login Admin';
         $this->load->view('masuk', $data);
     }
 

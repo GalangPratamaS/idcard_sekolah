@@ -13,7 +13,8 @@
                     </div>
                     <div class="p-3">
                         <div class="float-right">
-                            <a href="<?= base_url('siswa'); ?>" class="text-white-50"><i class="mdi dripicons-user h5"></i></a>
+                        
+                            <a href="#" class="text-white-50" data-toggle="modal" data-target="#siswaSekolahModal"><i class="mdi dripicons-user h5"></i></a>
                         </div>
                         <p class="font-14 m-0">Jumlah Siswa</p>
                     </div>
@@ -51,7 +52,7 @@
                     </div>
                     <div class="p-3">
                         <div class="float-right">
-                            <a href="<?= base_url('siswa'); ?>" class="text-white-50"><i class="dripicons-store h5"></i></a>
+                            <a href="<?= base_url('Sekolah'); ?>" class="text-white-50"><i class="dripicons-store h5"></i></a>
                         </div>
                         <p class="font-14 m-0">Pengaturan Sekolah</p>
                     </div>
@@ -78,3 +79,4 @@
         </div>
     </div>
 </div>
+

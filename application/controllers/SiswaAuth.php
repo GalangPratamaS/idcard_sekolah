@@ -12,7 +12,7 @@ class SiswaAuth extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Halaman Login';
+        $data['title'] = 'Halaman Login Siswa';
         $this->load->view('masuk_siswa', $data);
     }
 
@@ -34,8 +34,8 @@ class SiswaAuth extends CI_Controller
             if (password_verify($password, $user['password'])) { // Jika password yang diinput sama dengan password yang didatabase
                 $session =
                     array(
-
                         'nis' => $user['username'],  // Buat session username
+                        'jenjang' => $user['id_jenjang'],
                         'level' => 'siswa',  // Buat session level
                     );
                 $this->session->set_userdata($session); // Buat session sesuai $session
@@ -51,6 +51,7 @@ class SiswaAuth extends CI_Controller
     {
         $this->session->unset_userdata('nis');
         $this->session->unset_userdata('level');
+        $this->session->unset_userdata('jenjang');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil keluar!</div>');
         redirect('SiswaAuth');
     }

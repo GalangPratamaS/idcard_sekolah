@@ -81,7 +81,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 html2canvas($('#idcard')[0], {
-  scale:3
+  scale:1
 }).then(function(canvas) {
   var a = document.createElement('a');
   a.href = canvas.toDataURL("image/png");

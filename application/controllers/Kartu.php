@@ -7,7 +7,7 @@ class Kartu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+        cek_admin();
         $this->load->model('Sekolah_model');
         $this->load->model('Kartu_model');
         $this->load->model('Siswa_model');
@@ -16,7 +16,7 @@ class Kartu extends CI_Controller
     public function index()
     {
         $data['desain'] = $this->db->get('desain')->result();
-        $data['sekolah'] = $this->Sekolah_model->get_by_id();
+        $data['sekolah'] = $this->Sekolah_model->get_by_id(1);
         $data['title'] = "Pengaturan Kartu";
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kartu', $data);

@@ -6,8 +6,7 @@ class SiswaTes extends CI_Controller
 
     public function __construct()
     {
-        parent::__construct();
-        is_logged_in();
+        parent::__construct();       
         $this->load->model('Sekolah_model');
         $this->load->model('Siswa_model');
         $this->load->library(array('PHPExcel', 'PHPExcel/IOFactory'));
@@ -163,6 +162,83 @@ class SiswaTes extends CI_Controller
         }
     }
 
+    function akunImport()
+    {
+        $this->load->library('upload');
+
+        $jmlsukses = 0;
+        $jmlgagal = 0;
+        $fileName = $_FILES['importfileakun']['name'];
+
+        $config['upload_path'] = './asset/fileimport/akun/'; //buat folder dengan nama assets di root folder
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx';
+
+        
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('importfileakun')) {
+            $json = 'failed';
+        } else {
+            $media = $this->upload->data();
+            $json = 'success';
+            $inputFileName = './asset/fileimport/akun/' . $media['file_name'];
+
+            try {
+                $inputFileType = IOFactory::identify($inputFileName);
+                $objReader = IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+            }
+
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+
+            for ($row = 2; $row <= $highestRow; $row++) {                  //  Read a row of data into an array                 
+                $rowData = $sheet->rangeToArray(
+                    'A' . $row . ':' . $highestColumn . $row,
+                    NULL,
+                    TRUE,
+                    FALSE
+                );
+
+                $username = $rowData[0][1];
+                $password = $rowData[0][2];
+                $nis_siswa = $rowData[0][3];
+                $cost = 10;
+                $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => $cost]);
+                // var_dump($date);
+                // die;
+                $cekdata = $this->db->get_where('akun_siswa', ['username' => $username]);
+                if ($cekdata->num_rows() > 0) {
+                    ++$jmlgagal;
+                    $json = 'failed';
+                } else {
+                    $datasimpan = [
+                        'username' => $username,
+                        'password' => $hash,
+                        'nis_siswa' => $nis_siswa                        
+                    ];
+                    if ($this->db->insert('akun_siswa', $datasimpan)) {                      
+                        $json = 'success';
+                        ++$jmlsukses;
+                    } else {
+                        ++$jmlgagal;
+                    }
+                }
+            }
+        }
+        $jsons = [
+            'status' => $json,
+            'data_gagal' => "Data siswa gagal : $jmlgagal",
+            'data_berhasil' => "Data siswa berhasil : $jmlsukses",
+
+        ];
+        $this->output->set_content_type('application/json')->set_output(json_encode($jsons));
+    }
+
     function doimport()
     {
         $jmlsukses = 0;
@@ -211,9 +287,9 @@ class SiswaTes extends CI_Controller
                 $tanggal_lahir = PHPExcel_Style_NumberFormat::toFormattedString($date, "DD/MM/YYYY");
                 $alamat = $rowData[0][6];
                 $foto_siswa = $rowData[0][7];
-                $kendaraan = $rowData[0][9];
-                $nomor_pol = $rowData[0][10];
-                $jenjang = $rowData[0][11];
+                $kendaraan = $rowData[0][8];
+                $nomor_pol = $rowData[0][9];
+                $jenjang = $rowData[0][10];
                 // var_dump($date);
                 // die;
                 $cekdata = $this->db->get_where('siswa2', ['nomor_induk_siswa' => $nis]);
@@ -228,10 +304,11 @@ class SiswaTes extends CI_Controller
                         'tempat_lahir' => $tempat_lahir,
                         'tanggal_lahir' => htmlspecialchars($tanggal_lahir),
                         'alamat' => htmlspecialchars($alamat),
-                        'foto_siswa' => $nis . '.png',
+                        'foto_siswa' => $foto_siswa,
                         'qr_siswa' => $nis . '.png',
                         'tipe_kendaraan' => $kendaraan,
                         'nomor_polisi' => $nomor_pol,
+                        'foto_stnk' => '-',
                         'id_jenjang' => $jenjang,
                     ];
                     if ($this->db->insert('siswa2', $datasimpan)) {

@@ -30,12 +30,12 @@
 
                 </div>
                 <div class="col-lg-5 offset-lg-1">
-                    <div class="card mb-0">
+                    <div class="card mb-0 bg-white">
                         <div class="card-body">
                             <div class="p-2">
-                                <h4 class="text-white float-right font-18 mt-4">Login</h4>
+                                <h4 class="text-white float-right font-18 mt-4">Login Admin</h4>
                                 <div>
-                                    <a href="#" class="logo logo-admin"><img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo-dark.png" height="28" alt="logo"></a>
+                                    <a href="#" class="logo logo-admin"><img src="<?= base_url('vendor/vertical/'); ?>assets/images/logo-dark.png" height="120" alt="logo"></a>
                                 </div>
                             </div>
 
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                </>
+               
                 <!-- end row -->
             </div>
         </div>

@@ -5,6 +5,79 @@
 </footer>
 </div>
 <!-- End Right content here -->
+
+<!-- Modal -->
+<div class="modal fade" id="siswaSekolahModal" tabindex="-1" role="dialog" aria-labelledby="siswaSekolahModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="siswaSekolahModal">Pilih Siswa Sekolah</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <a href="<?= base_url('Siswa/index/5') ?>" class="card card-list d-block">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="<?= base_url() ?>assets/images/tk-alazhar.png" alt="TKIA" width="66px" height="66px">
+                </div>
+                <div class="col-md-6 mt-4">
+                    TKIA 36 Al Azhar
+                </div>
+                <div class="col-md-1 mt-3 d-none d-md-block">
+                    <img src="<?= base_url() ?>assets/images/dashboard-arrow-right.svg" alt="">
+                </div>
+            </div>
+        </a>
+         <a href="<?= base_url('Siswa/index/4') ?>" class="card card-list d-block">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="<?= base_url() ?>assets/images/sd-alazhar.png" alt="SDIA" width="66px" height="66px">
+                </div>
+                <div class="col-md-6 mt-4">
+                    SDIA 41 Al Azhar
+                </div>
+                <div class="col-md-1 mt-3 d-none d-md-block">
+                    <img src="<?= base_url() ?>assets/images/dashboard-arrow-right.svg" alt="">
+                </div>
+            </div>
+        </a>
+         <a href="<?= base_url('Siswa/index/3') ?>" class="card card-list d-block">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="<?= base_url() ?>assets/images/smp-alazhar.png" alt="SMPIA" width="66px" height="66px">
+                </div>
+                <div class="col-md-6 mt-4">
+                    SMPIA 35 Al Azhar
+                </div>
+                <div class="col-md-1 mt-3 d-none d-md-block">
+                    <img src="<?= base_url() ?>assets/images/dashboard-arrow-right.svg" alt="">
+                </div>
+            </div>
+        </a>
+        <a href="<?= base_url('Siswa/index/2') ?>" class="card card-list d-block">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="<?= base_url() ?>assets/images/sma-alazhar.png" alt="SMAIA" width="66px" height="66px">
+                </div>
+                <div class="col-md-6 mt-4">
+                    SMAIA 17 Al Azhar
+                </div>
+                <div class="col-md-1 mt-3 d-none d-md-block">
+                    <img src="<?= base_url() ?>assets/images/dashboard-arrow-right.svg" alt="">
+                </div>
+            </div>
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+
 </div>
 <!-- END wrapper -->
 
@@ -204,7 +277,7 @@
                         }, false);
                         return xhr;
                     },
-                    url: '<?= base_url('sekolah/stempel') ?>',
+                    url: '<?= base_url('sekolah/stempel/'). $this->uri->segment(3) ?>',
                     method: "POST",
                     data: form_data,
                     contentType: false,
@@ -282,7 +355,7 @@
                         }, false);
                         return xhr;
                     },
-                    url: '<?= base_url('sekolah/dinas') ?>',
+                    url: '<?= base_url('sekolah/dinas/') . $this->uri->segment(3) ?>',
                     method: "POST",
                     data: form_data,
                     contentType: false,
@@ -361,7 +434,7 @@
                         }, false);
                         return xhr;
                     },
-                    url: '<?= base_url('sekolah/ttd') ?>',
+                    url: '<?= base_url('sekolah/ttd/'). $this->uri->segment(3) ?>',
                     method: "POST",
                     data: form_data,
                     contentType: false,
@@ -436,7 +509,7 @@
                         }, false);
                         return xhr;
                     },
-                    url: '<?= base_url('sekolah/logo') ?>',
+                    url: '<?= base_url('sekolah/logo/'). $this->uri->segment(3) ?>',
                     method: "POST",
                     data: form_data,
                     contentType: false,
@@ -487,7 +560,7 @@
             "serverSide": true,
             "scrollCollapse": true,
             "ajax": {
-                "url": "<?php echo site_url('siswa/get_data_siswa') ?>",
+                "url": "<?php if(!empty($id_sekolah)) echo base_url('Siswa/get_data_siswa/').$id_sekolah; ?>",
                 "type": "POST"
             },
             "columnDefs": [{
@@ -535,6 +608,16 @@
                             $("#alamat_error").html(data.alamat_error);
                         } else {
                             $("#alamat_error").html("");
+                        }
+                         if (data.alamat_error != "") {
+                            $("#tipe_kendaraan").html(data.alamat_error);
+                        } else {
+                            $("#kendaraan_error").html("");
+                        }
+                        if (data.alamat_error != "") {
+                            $("#no_polisi").html(data.alamat_error);
+                        } else {
+                            $("#nopol_error").html("");
                         }
                     }
                     if (data.success) {
@@ -600,6 +683,62 @@
         });
     });
 
+    jQuery(document).on('submit', '#upload-form-akun', function(e) {
+        jQuery("#chk-error-akun").html('');
+        e.preventDefault();
+        $.ajax({
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(element) {
+                    if (element.lengthComputable) {
+                        $('#uploaded_file_akun').html('');
+                        var percentComplete = ((element.loaded / element.total) * 100);
+                        $("#file-progress-bar-akun").width(percentComplete + '%');
+                        $("#file-progress-bar-akun").html(percentComplete + '%');
+                    }
+                }, false);
+                return xhr;
+            },
+            type: 'POST',
+            url: '<?= base_url('siswates/akunImport') ?>',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: 'json',
+
+            beforeSend: function() {
+                $("#file-progress-bar-akun").width('0%');
+                $("#btnUploadAkun").attr('disabled', true);
+                $("#btnUploadAkun").html('<span class="spinner-border spinner-border-sm"></span> Mohon tunggu...');
+            },
+
+            success: function(json) {
+                if (json.status == 'success') {
+                    Swal({
+                        title: 'Berhasil',
+                        html: json.data_berhasil + '<br>' + json.data_gagal,
+                        type: 'success',
+
+                    }).then(function() {
+                        window.location.reload();
+                    })
+                } else {
+                    $('#uploaded_file_akun').html('<div class="alert alert-danger">Data gagal diupload! <br>' + json.data_gagal + '<br>' + json.data_berhasil + '</div>');
+                    $("#btnUploadAkun").attr('disabled', false);
+                    $("#btnUploadAkun").html('<i class="mdi mdi-cloud-upload"></i> Upload');
+
+                }
+            },
+            error: function() {
+                $('#uploaded_file_akun').html('<div class="alert alert-danger">Data gagal diupload, pastikan file dan penulisan benar!</div>');
+                $("#btnUploadAkun").attr('disabled', false);
+                $("#btnUploadAkun").html('<i class="mdi mdi-cloud-upload"></i> Upload');
+
+            }
+        });
+    });
+
     function byid(id, type) {
         if (type == 'edit') {
             formSiswa[0].reset();
@@ -615,19 +754,10 @@
             dataType: "json",
             success: function(response) {
                 if (type == 'print') {
-                    window.location = "<?php echo site_url('siswa/print/') ?>" + id;
+                    window.open("<?php echo site_url('siswa/print_single/') ?>" + id,"_blank");
                 }
                 if (type == 'edit') {
-                    btnEdit.attr('disabled', false);
-                    btnEdit.html('Update');
-                    $('[name="id_siswa"]').val(response.id_siswa);
-                    $('[name="enis"]').val(response.nis);
-                    $('[name="enama"]').val(response.nama);
-                    $('[name="ejk"]').val(response.jk);
-                    $('[name="ealamat"]').val(response.alamat);
-                    $('[name="etempat_lahir"]').val(response.tempat_lahir);
-                    $('[name="etanggal_lahir"]').val(response.tanggal_lahir);
-                    modalSiswa.modal('show');
+                   window.location = "<?php echo site_url('Siswa/edit_data/') ?>" + id;
                 }
 
                 if (type == 'hapus') {

@@ -27,12 +27,12 @@
 			<tr>
 				<td>Nama</td>
 				<td>:</td>
-				<td><?= $s['nama']; ?></td>
+				<td><?= $s['nama_siswa']; ?></td>
 			</tr>
 			<tr>
 				<td>NIS</td>
 				<td>:</td>
-				<td><?= $s['nis']; ?></td>
+				<td><?= $s['nomor_induk_siswa']; ?></td>
 			</tr>
 			</tr>
 			<tr>
